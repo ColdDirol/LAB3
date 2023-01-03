@@ -19,9 +19,8 @@ public class Parachute extends PhysicalObject {
     }
 
     // Вложенный статический класс
-    public static class Hood {
-        public void autoCloseParachute(){
-            System.out.println("Парашют сломался.");
+    public static class Stat {
+        public void remainderOfParachutes(){
             parachutesLeft -= 1;
             System.out.println("Осталось парашютов " + parachutesLeft + ".");
         }
@@ -42,8 +41,10 @@ public class Parachute extends PhysicalObject {
     }
 
     public void close(){
-        Hood hood = new Hood();
-        hood.autoCloseParachute();
+        Stat stat = new Stat();
+
+        System.out.println("Парашют автоматически сложился.");
+        stat.remainderOfParachutes();
     }
 
 
