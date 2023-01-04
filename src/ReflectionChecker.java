@@ -57,7 +57,7 @@ public class ReflectionChecker {
         }
     }
 
-    public void changeFields(Object object) throws IllegalAccessException {
+    public void changePrivateFields(Object object) throws IllegalAccessException {
         Class clazz = object.getClass();
         Field fields[] = clazz.getDeclaredFields();
         System.out.println("Изменено: ");
@@ -75,5 +75,10 @@ public class ReflectionChecker {
             field.setAccessible(false);
             // Если поле не помечено аннотацией @ToChangeAnnotation - if, иначе - else
         }
+    }
+
+    public Object createNewObject (Object object) throws InstantiationException, IllegalAccessException {
+        Class clazz = object.getClass();
+        return clazz.newInstance();
     }
 }

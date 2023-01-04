@@ -15,7 +15,7 @@ import static plants.FruitType.LUNAR_RESPBERRY;
 import static plants.FruitType.EARTHLY_RESPBERRY;
 
 public class Main {
-    public static void main(String[] args) throws NullException, IllegalNameException, FileNotFoundException, IllegalAccessException {
+    public static void main(String[] args) throws NullException, IllegalNameException, FileNotFoundException, IllegalAccessException, InstantiationException {
         //коротышки и лунатышки
         System.out.println("Check compiler message");
 
@@ -25,6 +25,8 @@ public class Main {
         Shorties zvezdochka = new Zvezdochka("Звездочка");
         Shorties spruts = new Spruts("Спрутс");
         Parachute parachute = new Parachute("Парашют");
+
+        //Parachute.Stat stat = new Parachute.Stat();
 
         //растения
         Plant bush = new Bush("Куст");
@@ -132,10 +134,13 @@ public class Main {
 
         System.out.println(test.getMyName());
         System.out.println(test.getSecondName());
-        reflectionChecker.changeFields(test);
+        reflectionChecker.changePrivateFields(test);
 
         System.out.println(test.getMyName());
         System.out.println(test.getSecondName());
+
+        Object testClone = reflectionChecker.createNewObject(test);
+        reflectionChecker.showClassFields(testClone);
 
         if(y == 0){
             throw new ArithmeticException("Одно из полей равно нулю. Обрати внимание на строку: " + currentLine);
