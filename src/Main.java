@@ -1,5 +1,6 @@
 import Exceptions.IllegalNameException;
 import Exceptions.NullException;
+import annotations.Test;
 import atmosphere.weather.Weather;
 import characters.shorties.*;
 import items.Parachute;
@@ -7,11 +8,14 @@ import plants.*;
 import spaceobjects.SpaceObject;
 import spaceobjects.satellites.Moon;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import static plants.FruitType.LUNAR_RESPBERRY;
 import static plants.FruitType.EARTHLY_RESPBERRY;
 
 public class Main {
-    public static void main(String[] args) throws NullException, IllegalNameException {
+    public static void main(String[] args) throws NullException, IllegalNameException, FileNotFoundException, IllegalAccessException {
         //коротышки и лунатышки
         System.out.println("Check compiler message");
 
@@ -36,6 +40,7 @@ public class Main {
             }
         };
         SpaceObject moon = new Moon("Луна");
+
 
         neznayka.fear();
         parachute.open();
@@ -106,19 +111,57 @@ public class Main {
         }
 
         neznayka.cantGetEnough();
-
         System.out.println("***");
 
         //Checked Exception (Compile time exception) - Исключения во время компиляции
         //Unchecked Exception (Runtime exception) - Исключения во время выполнения программы
+
+
         int x=4,y=0;
+        int currentLine = new Throwable().getStackTrace()[0].getLineNumber() - 1;
+
+//        try{
+//            System.out.println(x/y);
+//        }
+//        catch (ArithmeticException e){
+//            System.err.println("Одно из полей равно нулю. Обрати внимание на строку: " + currentLine);
+//        }
+
+        ReflectionChecker reflectionChecker = new ReflectionChecker();
+        Test test = new Test();
+
+        System.out.println(test.getMyName());
+        System.out.println(test.getSecondName());
+        reflectionChecker.changeFields(test);
+
+        System.out.println(test.getMyName());
+        System.out.println(test.getSecondName());
+
         if(y == 0){
-            throw new ArithmeticException("Ты молодец");
+            throw new ArithmeticException("Одно из полей равно нулю. Обрати внимание на строку: " + currentLine);
+            //System.err.println("Одно из полей равно нулю. Обрати внимание на строку: " + currentLine);
         }
-        System.out.println("Лалалал");
+
+        /*
+        Parachute mistakeParachute;
+        try {
+            mistakeParachute.toNullPointerException();
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+         */
+
+        System.out.println("Check compiler message");
+
+        //open();
     }
 
     private static void enter(){
         System.out.println();
+    }
+
+    private static void open() throws FileNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream("CreaturesCharacteristics.txt");
     }
 }

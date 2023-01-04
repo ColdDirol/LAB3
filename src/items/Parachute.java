@@ -47,6 +47,10 @@ public class Parachute extends PhysicalObject {
         stat.remainderOfParachutes();
     }
 
+    public void toNullPointerException(){
+        System.out.println("Это проверка RT исключения, не обращайте внимания!");
+    }
+
 
     public void slowDown(){
         System.out.println(this.getName() + " замедлил падение.");
